@@ -2,6 +2,8 @@ package UITests;
 
 import UI.Pages.HomePage;
 import UI.Utils.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static UI.Pages.BasePage.sleep;
@@ -10,6 +12,8 @@ public class LoginTest extends BaseTest {
 
     HomePage homePage;
 
+    @Description("Login test")
+    @Story("Smoke")
     @Test
     public void logIn(){
         homePage = new HomePage();
@@ -23,6 +27,7 @@ public class LoginTest extends BaseTest {
         sleep(8);
     }
 
+    @Description("Logout test. Run after login test")
     @Test(dependsOnMethods = {"logIn"})
     public void logOut(){
         homePage = new HomePage();

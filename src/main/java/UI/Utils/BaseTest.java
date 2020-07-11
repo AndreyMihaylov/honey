@@ -19,12 +19,13 @@ import static UI.Utils.Constans.WINDOW_SIZE;
 import java.net.URI;
 
 public class BaseTest {
+
     private static WebDriver webDriver;
     private static WebDriverWait wait;
 
     @BeforeTest
     @Parameters("browser")
-    public void setUp(@Optional("docker") String browser) {
+    public void setUp(@Optional("chrome") String browser) {
 
 //        BROWSER = browser;
         initialize(browser);
@@ -41,21 +42,21 @@ public class BaseTest {
 
         try {
             switch (browser.toLowerCase()) {
-                case "docker" :
-                    DesiredCapabilities capabilities = new DesiredCapabilities();
-                    capabilities.setBrowserName("chrome");
-                    capabilities.setVersion("81.0");
-                    capabilities.setCapability("enableVNC", true);
-                    capabilities.setCapability("enableVideo", false);
-                        webDriver = new RemoteWebDriver(
-                                URI.create("http://13.59.240.188:4444/wd/hub").toURL(),
-                                capabilities);
-
-                    break;
+//                case "docker" :
+//                    DesiredCapabilities capabilities = new DesiredCapabilities();
+//                    capabilities.setBrowserName("chrome");
+//                    capabilities.setVersion("81.0");
+//                    capabilities.setCapability("enableVNC", true);
+//                    capabilities.setCapability("enableVideo", false);
+//                        webDriver = new RemoteWebDriver(
+//                                URI.create("http://13.59.240.188:4444/wd/hub").toURL(),
+//                                capabilities);
+//
+//                    break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
-//                    chromeOptions.setHeadless(true);
+                    chromeOptions.setHeadless(true);
                     chromeOptions.addArguments(WINDOW_SIZE);
                     webDriver = new ChromeDriver(chromeOptions);
 
@@ -76,8 +77,8 @@ public class BaseTest {
 
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
         }
 
     }

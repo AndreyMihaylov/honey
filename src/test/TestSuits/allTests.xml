@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Interview">
+
+    <suite-files>
+        <suite-file path="UI/LoginTest.xml" />
+        <suite-file path="UI/SignUpTest.xml" />
+        <suite-file path="API/verifyProductTest.xml" />
+    </suite-files>
+
+</suite>

@@ -1,4 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name="Smoke">
+    <listeners>
+        <listener class-name="UI.Utils.ScreenShotOnFailListener" />
+    </listeners>
     <test name = "SignUp" >
         <classes >
             <class name="UITests.SingUpTest"/>
