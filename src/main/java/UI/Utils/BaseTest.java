@@ -1,6 +1,8 @@
 package UI.Utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,9 +11,12 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import static UI.Utils.Constans.URL_MAIN;
 import static UI.Utils.Constans.WINDOW_SIZE;
+import java.net.URI;
 
 public class BaseTest {
     private static WebDriver webDriver;
@@ -19,7 +24,7 @@ public class BaseTest {
 
     @BeforeTest
     @Parameters("browser")
-    public void setUp(@Optional("chrome") String browser) {
+    public void setUp(@Optional("docker") String browser) {
 
 //        BROWSER = browser;
         initialize(browser);
@@ -36,18 +41,17 @@ public class BaseTest {
 
         try {
             switch (browser.toLowerCase()) {
-//                case "docker" :
-//                    DesiredCapabilities capabilities = new DesiredCapabilities();
-//                    capabilities.setBrowserName("chrome");
-//                    capabilities.setVersion("81.0");
-//                    capabilities.setCapability("enableVNC", true);
-//                    capabilities.setCapability("enableVideo", false);
-//
-//                    webDriver = new RemoteWebDriver(
-//                            URI.create("http://18.222.122.170:4444/wd/hub").toURL(),
-//                            capabilities
-//                    );
-//                    break;
+                case "docker" :
+                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("chrome");
+                    capabilities.setVersion("81.0");
+                    capabilities.setCapability("enableVNC", true);
+                    capabilities.setCapability("enableVideo", false);
+                        webDriver = new RemoteWebDriver(
+                                URI.create("http://13.59.240.188:4444/wd/hub").toURL(),
+                                capabilities);
+
+                    break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
@@ -71,6 +75,9 @@ public class BaseTest {
             }
 
         } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
 
     }
