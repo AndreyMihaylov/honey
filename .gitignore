@@ -32,6 +32,7 @@ local.properties
 .loadpath
 /test-output/
 
+
 # Eclipse Core
 .project
 
@@ -129,8 +130,6 @@ build
 gulp/node_modules/
 gulp/build/
 
-### TripActions ###
-application-prod.yml
 
 ### macOS system files ###
 .DS_Store
