@@ -1,0 +1,7 @@
+<suite name="Smoke">
+    <test name = "SignUp" >
+        <classes >
+            <class name="UITests.SingUpTest"/>
+        </classes>
+    </test>
+</suite>

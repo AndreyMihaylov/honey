@@ -26,6 +26,6 @@ public class LoginTest extends BaseTest {
     @Test(dependsOnMethods = {"logIn"})
     public void logOut(){
         homePage = new HomePage();
-
+        homePage.clickExtendCategories().clickLogOut().successfulLogOut();
     }
 }
