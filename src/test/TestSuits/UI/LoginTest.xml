@@ -2,15 +2,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Smoke">
-    <!--<test name="Login">-->
-        <!--<classes>-->
-            <!--<class name="UITests.LoginTest">-->
-                <!--<methods>-->
-                    <!--<include name="logIn"/>-->
-                <!--</methods>-->
-            <!--</class>-->
-        <!--</classes>-->
-    <!--</test>-->
+
+    <listeners>
+        <listener class-name="UI.Utils.ScreenShotOnFailListener" />
+    </listeners>
+
+    <test name="Login">
+        <classes>
+            <class name="UITests.LoginTest">
+                <methods>
+                    <include name="logIn"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
     <test name="LogOut">
         <classes>

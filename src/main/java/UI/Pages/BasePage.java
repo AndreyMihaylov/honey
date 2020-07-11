@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static UI.Utils.BaseTest.getWait;
 import static UI.Utils.BaseTest.getWebdriver;
 
+
 public abstract class BasePage {
 
 
