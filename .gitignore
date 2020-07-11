@@ -98,4 +98,4 @@ buildNumber.properties
 .allure
 docker/docker-compose.yml
 target
-
+/resources
