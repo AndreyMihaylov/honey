@@ -14,16 +14,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
-import static UI.Utils.BaseTest.getWebdriver;
 
-public class CommonUtils {
+import static UI.Utils.WebDriverFactory.getDriver;
+
+
+public class CommonUtils extends BaseTest {
 
     public static final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
     private static final String folderPath = (System.getProperty("user.dir") + "/reports/tests/").replaceAll("/", Matcher.quoteReplacement(File.separator));;
 
 
     public static void makeScreenshotAttachment(String namePrefix) {
-        TakesScreenshot scrShot =((TakesScreenshot)getWebdriver());
+        TakesScreenshot scrShot =((TakesScreenshot)getDriver());
         logger.info("Taking screenshot: " + namePrefix);
         String screenName = generateScreenshotName(namePrefix);
         File src = scrShot.getScreenshotAs(OutputType.FILE);

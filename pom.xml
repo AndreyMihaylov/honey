@@ -142,10 +142,10 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/TestSuits/allTests.xml</suiteXmlFile>
+                        <suiteXmlFile>${testNGSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <properties>
-                        <suitethreadpoolsize>3</suitethreadpoolsize>
+                        <suitethreadpoolsize>5</suitethreadpoolsize>
                     </properties>
                     <failIfNoTests>true</failIfNoTests>
                 </configuration>
@@ -184,6 +184,14 @@
             <id>verificationIdTitlePricesOfProductTest</id>
             <properties>
                 <testNGSuite>src/test/TestSuits/API/verifyProductTest.xml</testNGSuite>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>allTests</id>
+            <properties>
+                <testNGSuite>src/test/TestSuits/allTests.xml</testNGSuite>
+                <suitethreadpoolsize>8</suitethreadpoolsize>
             </properties>
         </profile>
     </profiles>

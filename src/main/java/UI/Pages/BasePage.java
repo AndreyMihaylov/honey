@@ -3,11 +3,12 @@ package UI.Pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import static UI.Utils.BaseTest.getWait;
-import static UI.Utils.BaseTest.getWebdriver;
+import static UI.Utils.WebDriverFactory.getDriver;
 
 
-public abstract class BasePage {
+public abstract class BasePage{
 
 
     public void waitForVisability(WebElement element) {
@@ -35,7 +36,7 @@ public abstract class BasePage {
     }
 
     public BasePage jsClick(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) getWebdriver();
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", element);
         return this;
     }

@@ -21,10 +21,7 @@ public class SingUpTest extends BaseTest {
     @Parameters("browser")
     public void setUp(@Optional("chrome") String browser) {
         WINDOW_SIZE = "--window-size=1000,1000";
-        initialize(browser);
         open(URL_MAIN);
-        getWebdriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @Test
