@@ -20,7 +20,7 @@ import static UI.Utils.Constans.WINDOW_SIZE;
 
 public class WebDriverFactory {
 
-    private static String selenoidIP = System.getProperty("ip", "13.59.177.65");
+    private static String selenoidIP = System.getProperty("ip", "18.219.160.217");
 
 
     private WebDriverFactory() {

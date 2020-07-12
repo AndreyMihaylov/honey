@@ -81,7 +81,11 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-
+mv .idea ../.idea_backup
+rm .idea # in case you forgot to close your IDE
+git rm -r .idea
+git commit -m "Remove .idea from repo"
+mv ../.idea_backup .idea
 
 ### macOS system files ###
 .DS_Store
@@ -89,6 +93,7 @@ buildNumber.properties
 
 *.iml
 .idea/*
+.idea/workspace.xml
 .idea/workspace.xml
 !.idea/dictionaries
 */video
