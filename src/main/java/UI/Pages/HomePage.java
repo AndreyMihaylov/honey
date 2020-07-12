@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static UI.Utils.BaseTest.webDriver;
+import static UI.Utils.WebDriverFactory.getDriver;
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class HomePage extends BasePage {
@@ -34,7 +34,7 @@ public class HomePage extends BasePage {
     WebElement join;
 
     public HomePage() {
-        initElements(webDriver, this);
+        initElements(getDriver(), this);
     }
 
     @Step("Click on login link")

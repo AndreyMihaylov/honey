@@ -1,12 +1,11 @@
 package UI.Pages;
 
-import UI.Utils.BaseTest;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static UI.Utils.BaseTest.getWait;
-import static UI.Utils.BaseTest.webDriver;
+import static UI.Utils.WebDriverFactory.getDriver;
 
 
 public abstract class BasePage{
@@ -37,7 +36,7 @@ public abstract class BasePage{
     }
 
     public BasePage jsClick(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", element);
         return this;
     }

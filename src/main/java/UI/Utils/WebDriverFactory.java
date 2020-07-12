@@ -15,19 +15,15 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
+import static UI.Utils.Constans.IMP_WAIT_TIME_SEC;
 import static UI.Utils.Constans.WINDOW_SIZE;
 
 public class WebDriverFactory {
 
     private static String selenoidIP = System.getProperty("ip", "18.219.122.255");
 
-    private static final WebDriverFactory instance = new WebDriverFactory();
 
     private WebDriverFactory() {
-    }
-
-    public static WebDriverFactory getInstance() {
-        return instance;
     }
 
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
@@ -65,8 +61,8 @@ public class WebDriverFactory {
                 default:
                     throw new RuntimeException("Driver is not implemented for browser: " + browser);
             }
-
-            threadDriver.set(webDriver);
+            webDriver.manage().timeouts().implicitlyWait(IMP_WAIT_TIME_SEC, TimeUnit.SECONDS);
+            webDriver.manage().window().maximize();
 
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
@@ -80,13 +76,7 @@ public class WebDriverFactory {
         threadDriver.set(configDriver(browser));
     }
 
-    public WebDriver getDriver(String browser) {
-        if (threadDriver.get() == null) {
-            setDriver(browser);
-            threadDriver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            threadDriver.get().manage().window().maximize();
-            System.out.println("+++++++++++++++++++++++++++ NEW DRIVER++++++++++++++++++++++++");
-        }
+    public static WebDriver getDriver() {
         return threadDriver.get();
     }
 
@@ -94,7 +84,7 @@ public class WebDriverFactory {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-infobars");
         options.addArguments(WINDOW_SIZE);
-//        options.setHeadless(true);
+        options.setHeadless(true);
         return options;
     }
 
@@ -107,7 +97,7 @@ public class WebDriverFactory {
         return options;
     }
 
-    public void quitDriver() {
+    public static void quitDriver() {
         threadDriver.get().quit();
         threadDriver.set(null);
     }
