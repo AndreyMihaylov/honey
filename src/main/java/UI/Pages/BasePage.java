@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static UI.Utils.BaseTest.getWait;
+import static UI.Utils.CommonUtils.addError;
 import static UI.Utils.WebDriverFactory.getDriver;
 
 
@@ -29,6 +30,7 @@ public abstract class BasePage{
             waitForClick(element);
             element.click();
         } catch (Exception e) {
+            addError("Click doesn't work, try JS click");
             jsClick(element);
 
         }

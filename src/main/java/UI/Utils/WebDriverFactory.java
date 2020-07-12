@@ -20,7 +20,7 @@ import static UI.Utils.Constans.WINDOW_SIZE;
 
 public class WebDriverFactory {
 
-    private static String selenoidIP = System.getProperty("ip", "18.219.122.255");
+    private static String selenoidIP = System.getProperty("ip", "13.59.177.65");
 
 
     private WebDriverFactory() {
@@ -32,12 +32,45 @@ public class WebDriverFactory {
 
         WebDriver webDriver = null;
         try {
-
+            DesiredCapabilities capabilities;
             switch (browser.toLowerCase()) {
-                case "docker":
-                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                case "docker-chrome-81":
+                    capabilities = new DesiredCapabilities();
                     capabilities.setBrowserName("chrome");
                     capabilities.setVersion("81.0");
+                    capabilities.setCapability("enableVNC", true);
+                    capabilities.setCapability("enableVideo", false);
+                    webDriver = new RemoteWebDriver(
+                            URI.create("http://" + selenoidIP + ":4444/wd/hub").toURL(),
+                            capabilities);
+
+                    break;
+                case "docker-chrome-83":
+                    capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("chrome");
+                    capabilities.setVersion("83.0");
+                    capabilities.setCapability("enableVNC", true);
+                    capabilities.setCapability("enableVideo", false);
+                    webDriver = new RemoteWebDriver(
+                            URI.create("http://" + selenoidIP + ":4444/wd/hub").toURL(),
+                            capabilities);
+
+                    break;
+                case "docker-firefox-78":
+                    capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("firefox");
+                    capabilities.setVersion("78.0");
+                    capabilities.setCapability("enableVNC", true);
+                    capabilities.setCapability("enableVideo", false);
+                    webDriver = new RemoteWebDriver(
+                            URI.create("http://" + selenoidIP + ":4444/wd/hub").toURL(),
+                            capabilities);
+
+                    break;
+                case "docker-firefox-77":
+                    capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("firefox");
+                    capabilities.setVersion("77.0");
                     capabilities.setCapability("enableVNC", true);
                     capabilities.setCapability("enableVideo", false);
                     webDriver = new RemoteWebDriver(
