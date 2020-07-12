@@ -4,24 +4,28 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import static UI.Utils.CommonUtils.addInfo;
+
 
 public class ScreenShotOnFailListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-
+        addInfo("++++++++++Test start :"+ result.getName()+"++++++++++");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-
+        addInfo("+++++++++Test Successful :"+ result.getName()+"++++++++++");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println();
-        System.out.println(result.getName()+"\033 Test Failed. Something should be verified! Screenshot is taken.\033");
+        addError(result.getName()+"++++++++++++Test Failed. Something should be verified! Screenshot is taken++++++++++");
         CommonUtils.makeScreenshotAttachment("test_fail");
+    }
+
+    private void addError(String s) {
     }
 
     @Override

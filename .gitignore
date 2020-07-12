@@ -89,6 +89,7 @@ buildNumber.properties
 
 *.iml
 .idea/*
+.idea/workspace.xml
 !.idea/dictionaries
 */video
 *.html
@@ -100,3 +101,5 @@ docker/docker-compose.yml
 target
 \resources\
 allure-results/
+Logs/
+reports/

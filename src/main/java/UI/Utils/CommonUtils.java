@@ -1,18 +1,18 @@
 package UI.Utils;
 
-import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.qameta.allure.Allure;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 
 import static UI.Utils.WebDriverFactory.getDriver;
@@ -20,13 +20,12 @@ import static UI.Utils.WebDriverFactory.getDriver;
 
 public class CommonUtils extends BaseTest {
 
-    public static final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
-    private static final String folderPath = (System.getProperty("user.dir") + "/reports/tests/").replaceAll("/", Matcher.quoteReplacement(File.separator));;
-
+    public static Logger logger = null;
+    private static final String folderPath = (System.getProperty("user.dir") + "/reports/tests/").replaceAll("/", Matcher.quoteReplacement(File.separator));
 
     public static void makeScreenshotAttachment(String namePrefix) {
         TakesScreenshot scrShot =((TakesScreenshot)getDriver());
-        logger.info("Taking screenshot: " + namePrefix);
+        addInfo("Taking screenshot: " + namePrefix);
         String screenName = generateScreenshotName(namePrefix);
         File src = scrShot.getScreenshotAs(OutputType.FILE);
         String folder = generateFileName(screenName);
@@ -44,7 +43,7 @@ public class CommonUtils extends BaseTest {
 
     private static String generateFileName(String screenshotName) {
         String filePath = folderPath + screenshotName + ".png";
-        System.out.println("Screenshot address:\n " + filePath);
+        addInfo("Screenshot address:\n " + filePath);
         return filePath;
     }
 
@@ -57,13 +56,36 @@ public class CommonUtils extends BaseTest {
         }
     }
 
-    public static void saveTextLog(String message){
-        Allure.addAttachment("Log:", message);
+    public static void setLogger(){
+
+        logger = LogManager.getLogger(CommonUtils.class);
     }
 
-    public static void addLog(String message){
+    public static void saveTextInfo(String message){
+        Allure.addAttachment("INFO:", message);
+    }
+
+    public static void saveTextError(String message){
+        Allure.addAttachment("INFO:", message);
+    }
+
+    public static void addInfo(String message){
         logger.info(message);
-        saveTextLog(message);
+        saveTextInfo(message);
+    }
+
+    public static void addError(String message){
+        logger.error(message);
+        saveTextError(message);
+    }
+
+    public static String getCurrentDateTime(){
+        Calendar currentDate = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat(
+                "MM/dd/yyyy HH:mm:ss");
+        String date = formatter.format(currentDate.getTime()).replace("/", "_");
+        date = date.replace(":", "_");
+        return date;
     }
 
 }

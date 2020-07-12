@@ -3,25 +3,16 @@ package UITests;
 import UI.Pages.HomePage;
 import UI.Utils.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
-
-import static UI.Utils.Constans.URL_MAIN;
+import org.testng.annotations.*;
 import static UI.Utils.Constans.WINDOW_SIZE;
 
 public class SingUpTest extends BaseTest {
 
     HomePage homePage;
 
-    @BeforeTest
-    @Parameters("browser")
-    public void setUp(@Optional("chrome") String browser) {
+    @BeforeSuite
+    public void setUp() {
         WINDOW_SIZE = "--window-size=1000,1000";
-        open(URL_MAIN);
     }
 
     @Test

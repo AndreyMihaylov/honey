@@ -15,17 +15,12 @@
         <aspectj.version>1.9.2</aspectj.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.13.1</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.0.0</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -129,6 +124,18 @@
             <artifactId>allure-java-commons</artifactId>
             <version>2.13.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.12.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -166,6 +173,11 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java/UI/Utils</directory>
+            </resource>
+        </resources>
     </build>
     <profiles>
         <profile>
@@ -177,7 +189,7 @@
         <profile>
             <id>signUpTest</id>
             <properties>
-                <testNGSuite>src/test/TestSuits/UI/SignUp.xml</testNGSuite>
+                <testNGSuite>src/test/TestSuits/UI/SignUpTest.xml</testNGSuite>
             </properties>
         </profile>
         <profile>
