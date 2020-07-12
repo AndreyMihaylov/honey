@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke" parallel="tests" thread-count="1">
+<suite name="Smoke">
 
     <listeners>
         <listener class-name="UI.Utils.ScreenShotOnFailListener" />
     </listeners>
-
+    <parameter name="email" value="mikhailov.andrei.qa@gmail.com" />
+    <parameter name="pswd" value="Qwerty1234" />
     <test name="Login docker-chrome-81">
-        <parameter name="browser" value="docker-chrome-81"/>
+        <!--<parameter name="browser" value="docker-chrome-81"/>-->
         <classes>
             <class name="UITests.LoginTest">
                 <methods>
@@ -19,7 +20,7 @@
     </test>
 
     <test name="Login docker-firefox-78">
-        <parameter name="browser" value="docker-firefox-78"/>
+        <!--<parameter name="browser" value="docker-firefox-78"/>-->
         <classes>
             <class name="UITests.LoginTest">
                 <methods>
@@ -30,7 +31,7 @@
     </test>
 
     <test name="LogOut docker-firefox-77">
-        <parameter name="browser" value="docker-firefox-77"/>
+        <!--<parameter name="browser" value="docker-firefox-77"/>-->
         <classes>
             <class name="UITests.LoginTest">
                 <methods>
@@ -42,7 +43,7 @@
     </test>
 
     <test name="LogOut Login docker-chrome-83">
-        <parameter name="browser" value="docker-chrome-83"/>
+        <!--<parameter name="browser" value="docker-chrome-83"/>-->
         <classes>
             <class name="UITests.LoginTest">
                 <methods>

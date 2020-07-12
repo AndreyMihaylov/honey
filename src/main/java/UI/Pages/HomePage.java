@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static UI.Utils.CommonUtils.addInfo;
 import static UI.Utils.WebDriverFactory.getDriver;
 import static org.openqa.selenium.support.PageFactory.initElements;
 
@@ -71,12 +72,14 @@ public class HomePage extends BasePage {
     @Step("Fill out email with email: {0}")
     public HomePage fillOutEmail(String email) {
         type(inputEmail, email);
+        addInfo("Email : " +email);
         return this;
     }
 
     @Step("Fill out password with password: {0}")
     public HomePage fillOutPassword(String password) {
         type(inputPassword, password);
+        addInfo("Password : " +password);
         return this;
     }
 

@@ -1,29 +1,23 @@
 package API.Utils;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
+
+import static API.Utils.Constans.getPathToResouces;
 
 public class YmlReader {
 
-    String absolutePath = System.getProperty("user.dir");
-    String pathToBookingId = "";
-
     public HashMap<?, ?> getData(String fileName) {
         FileInputStream stream = null;
-        pathToBookingId = (absolutePath + "/src/main/resources/" + fileName).replaceAll("/", Matcher.quoteReplacement(File.separator));
         HashMap<?, ?> object = null;
         Yaml yaml;
         try {
-            File file = new File(pathToBookingId);
+            File file = new File(getPathToResouces(fileName));
             stream = new FileInputStream(file);
             yaml = new Yaml();
             object = yaml.load(stream);
@@ -37,24 +31,6 @@ public class YmlReader {
                     e.printStackTrace();
                 }
         }
-        return object;
-    }
-
-    public JSONObject getDataJSON(String fileName) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JSONParser parser = new JSONParser();
-        JSONObject object=null;
-
-        pathToBookingId = (absolutePath+"/src/main/resources/" + fileName).replaceAll("/", Matcher.quoteReplacement(File.separator));
-        try {
-            FileReader file = new FileReader(pathToBookingId);
-
-            object= (JSONObject) parser.parse(file);
-        } catch (IOException|ParseException e){
-            e.printStackTrace();
-        }
-
-
         return object;
     }
 

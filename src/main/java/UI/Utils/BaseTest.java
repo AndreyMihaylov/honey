@@ -21,12 +21,13 @@ public class BaseTest {
     private static WebDriverWait wait;
     private String absolutePath = System.getProperty("user.dir");
     PrintStream fileStream;
-    boolean debugMode = false;
+    private static String debugMode = System.getProperty("debugMode", "true");
+
 
     @BeforeTest
     @Parameters("browser")
     public void setUp(@Optional("chrome") String browser) {
-        if (debugMode) {
+        if (debugMode=="true") {
             createFileStream();
             System.setOut(fileStream);
         }
@@ -53,7 +54,7 @@ public class BaseTest {
     private void createFileStream(){
         try {
             File file = new File((absolutePath +"/Logs/" + this.getClass().getName()));
-            System.out.println(file.mkdir());
+            file.mkdir();
             fileStream = new PrintStream((file.toString()+"/"+ getCurrentDateTime() + ".txt").replaceAll("/", Matcher.quoteReplacement(File.separator)));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

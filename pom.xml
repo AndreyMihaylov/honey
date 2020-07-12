@@ -55,11 +55,6 @@
             <artifactId>selenium-firefox-driver</artifactId>
             <version>${selenium-java-version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-htmlunit-driver</artifactId>
-            <version>2.52.0</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
@@ -152,7 +147,7 @@
                         <suiteXmlFile>${testNGSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <properties>
-                        <suitethreadpoolsize>5</suitethreadpoolsize>
+                        <!--<suitethreadpoolsize>5</suitethreadpoolsize>-->
                     </properties>
                     <failIfNoTests>true</failIfNoTests>
                 </configuration>

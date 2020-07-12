@@ -1,5 +1,6 @@
 package API;
 
+import API.Utils.JsonReader;
 import API.Utils.YmlReader;
 import API.Utils.YmlWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +46,7 @@ public class ApiActions extends HTTPMethods {
             ymlWriter.addCategory(category, ymlWriter.getProductId());
         }
 //        ymlWriter.setData(ymlWriter.getCategory(),"getCollectionsByUserIdForQualifiersPopular.yml");
-        ymlWriter.setDataJSON(ymlWriter.getCategory(), "getCollectionsByUserIdForQualifiersPopular.json");
+        ymlWriter.setData(ymlWriter.getCategory(), "getCollectionsByUserIdForQualifiersPopular.json");
     }
 
     public Map<String, String> getProductById(String product) {
@@ -98,8 +99,8 @@ public class ApiActions extends HTTPMethods {
     private HashMap<String, HashMap<String, String>> getMapAllProducts() {
         HashMap<String, HashMap<String, String>> mapIdsAll = new HashMap<>();
         HashMap<String, HashMap<String, String>> mapIds;
-        YmlReader ymlReader = new YmlReader();
-        JSONObject collectionOfProducts = ymlReader.getDataJSON("getCollectionsByUserIdForQualifiersPopular.json");
+        JsonReader jsonReader = new JsonReader();
+        JSONObject collectionOfProducts = jsonReader.getDataJSON("getCollectionsByUserIdForQualifiersPopular.json");
         Set<String> categories = collectionOfProducts.keySet();
 
         for (String category : categories) {
@@ -117,8 +118,8 @@ public class ApiActions extends HTTPMethods {
     private HashMap<String, HashMap<String, String>> getMapAllProductsByCategory(String category) {
         HashMap<String, HashMap<String, String>> mapIdsAll = new HashMap<>();
         HashMap<String, HashMap<String, String>> mapIds;
-        YmlReader ymlReader = new YmlReader();
-        JSONObject collectionOfProducts = ymlReader.getDataJSON("getCollectionsByUserIdForQualifiersPopular.json");
+        JsonReader jsonReader = new JsonReader();
+        JSONObject collectionOfProducts = jsonReader.getDataJSON("getCollectionsByUserIdForQualifiersPopular.json");
         Set<String> categories = collectionOfProducts.keySet();
 
         if (categories.contains(category)) {

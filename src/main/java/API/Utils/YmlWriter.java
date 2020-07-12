@@ -1,20 +1,19 @@
 package API.Utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
+
+import static API.Utils.Constans.getPathToResouces;
 
 public class YmlWriter {
 
     private Map<String, Map<String, Map<String, String>>> category = new HashMap<>();
     private Map<String, Map<String, String>> productId = new HashMap<>();
     private Map<String, String> productData;
-    private String absolutePath = System.getProperty("user.dir");
-    private String pathToBookingId = "";
 
     public void addCategory(String name, Map<String, Map<String, String>> productID) {
         category.put(name, productID);
@@ -46,11 +45,10 @@ public class YmlWriter {
 
     public void setData(Map<?, ?> data, String fileName) {
 
-        pathToBookingId = (absolutePath + "/src/main/resources/" + fileName).replaceAll("/", Matcher.quoteReplacement(File.separator));
         Yaml yaml = new Yaml();
         FileWriter writer = null;
         try {
-            writer = new FileWriter(pathToBookingId);
+            writer = new FileWriter(getPathToResouces(fileName));
             yaml.dump(data, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,16 +62,5 @@ public class YmlWriter {
         }
     }
 
-    public void setDataJSON(Map<?, ?> data, String fileName) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        pathToBookingId = (absolutePath + "/src/main/resources/" + fileName).replaceAll("/", Matcher.quoteReplacement(File.separator));
-        try {
-            objectMapper.writeValue(
-                    new FileOutputStream(pathToBookingId), data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
 }
