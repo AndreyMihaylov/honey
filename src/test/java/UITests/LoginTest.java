@@ -14,26 +14,45 @@ public class LoginTest extends BaseTest {
 
     HomePage homePage;
 
-    @Description("Login test")
-    @Story("Smoke")
-    @Parameters({"name","pswd"})
-    @Test
-    public void logIn(@Optional("none")String name, @Optional("none") String pswd){
+
+    public void logInCommon(String name,String pswd){
         homePage = new HomePage();
         homePage.clickLogIn()
                 .clickLogInWithEmail()
                 .fillOutEmail(name)
                 .fillOutPassword(pswd)
                 .clickLogInWithEmail();
-        Assert.assertTrue(homePage.successfulLogIn(),"Fail to logIn");
-
-        sleep(8);
     }
+
+    @Description("Login test")
+    @Story("Smoke")
+    @Parameters({"email","pswd"})
+    @Test
+    public void logIn(@Optional("none")String name, @Optional("none") String pswd){
+
+        logInCommon(name,pswd);
+        Assert.assertTrue(homePage.successfulLogIn(),"Fail to logIn");
+    }
+
+    @Description("Login test negative")
+    @Story("Smoke Neg")
+    @Parameters({"email","pswd"})
+    @Test
+    public void logInNeg(@Optional("none")String name, @Optional("none") String pswd) {
+
+        logInCommon(name, pswd);
+        Assert.assertTrue(homePage.successfulWrongPswd(), "Fail to logIn");
+    }
+
+
 
     @Description("Logout test. Run after login test")
     @Test(dependsOnMethods = {"logIn"})
     public void logOut(){
+
         homePage = new HomePage();
-        homePage.clickExtendCategories().clickLogOut().successfulLogOut();
+        homePage.clickExtendCategories()
+                .clickLogOut();
+        Assert.assertTrue(homePage.successfulLogOut(),"Fail to logIn");
     }
 }

@@ -20,7 +20,7 @@ import static UI.Utils.WebDriverFactory.getDriver;
 
 public class CommonUtils extends BaseTest {
 
-    public static Logger logger = null;
+    private static ThreadLocal<Logger> threadLogger = new ThreadLocal<>();
     private static final String folderPath = (System.getProperty("user.dir") + "/reports/tests/").replaceAll("/", Matcher.quoteReplacement(File.separator));
 
     public static void makeScreenshotAttachment(String namePrefix) {
@@ -58,7 +58,11 @@ public class CommonUtils extends BaseTest {
 
     public static void setLogger(){
 
-        logger = LogManager.getLogger(CommonUtils.class);
+        threadLogger.set(LogManager.getLogger(CommonUtils.class));
+    }
+
+    public static Logger getLogger(){
+        return threadLogger.get();
     }
 
     public static void saveTextInfo(String message){
@@ -70,12 +74,12 @@ public class CommonUtils extends BaseTest {
     }
 
     public static void addInfo(String message){
-        logger.info(message);
+        getLogger().info(message);
         saveTextInfo(message);
     }
 
     public static void addError(String message){
-        logger.error(message);
+        getLogger().error(message);
         saveTextError(message);
     }
 
@@ -86,6 +90,17 @@ public class CommonUtils extends BaseTest {
         String date = formatter.format(currentDate.getTime()).replace("/", "_");
         date = date.replace(":", "_");
         return date;
+    }
+
+    public static String getRandomString(int length) {
+        StringBuilder sbuilder = new StringBuilder();
+        String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        for (int i = 0; i<length; i++) {
+            int index = (int) (Math.random() * chars.length());
+            sbuilder.append(chars.charAt(index));
+        }
+        String randomString = sbuilder.toString();
+        return randomString;
     }
 
 }

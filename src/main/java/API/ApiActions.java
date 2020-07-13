@@ -1,6 +1,7 @@
 package API;
 
 import API.Utils.JsonReader;
+import API.Utils.JsonWriter;
 import API.Utils.YmlReader;
 import API.Utils.YmlWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +22,7 @@ public class ApiActions extends HTTPMethods {
 
     public void getCollectionsByUserIdForQualifiersPopular() {
         YmlWriter ymlWriter = new YmlWriter();
+        JsonWriter jsonWriter = new JsonWriter();
         Map<String, String> queryParams = new QueryParams().collectionsByUserIdForQualifiersPopular();
         ValidatableResponse response = get(uri, queryParams);
         String category;
@@ -46,7 +48,7 @@ public class ApiActions extends HTTPMethods {
             ymlWriter.addCategory(category, ymlWriter.getProductId());
         }
 //        ymlWriter.setData(ymlWriter.getCategory(),"getCollectionsByUserIdForQualifiersPopular.yml");
-        ymlWriter.setData(ymlWriter.getCategory(), "getCollectionsByUserIdForQualifiersPopular.json");
+        jsonWriter.setDataJSON(ymlWriter.getCategory(), "getCollectionsByUserIdForQualifiersPopular.json");
     }
 
     public Map<String, String> getProductById(String product) {

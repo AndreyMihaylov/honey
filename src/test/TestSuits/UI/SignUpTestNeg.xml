@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke">
+<suite name="Smoke SignUp">
 
     <listeners>
         <listener class-name="UI.Utils.ScreenShotOnFailListener" />
@@ -9,15 +9,14 @@
     <parameter name="email" value="mikhailov.andrei.qa@gmail.com" />
     <parameter name="pswd" value="Qwerty1234" />
 
-    <test name="Login docker-chrome-81">
+    <test name = "SignUp Negative" >
         <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="UITests.LoginTest">
+        <classes >
+            <class name="UITests.SingUpTest">
                 <methods>
-                    <include name="logIn"/>
+                    <include name="sngUpNeg"/>
                 </methods>
             </class>
         </classes>
     </test>
-
 </suite>

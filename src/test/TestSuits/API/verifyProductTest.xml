@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Smoke">
+<suite name="Smoke API">
 
-    <listeners>
-        <listener class-name="UI.Utils.ScreenShotOnFailListener" />
-    </listeners>
-
-    <test name = "verificationIdTitlePricesOfProductTest" >
+    <test name = "verificationIdPricesOfProductTest" >
         <classes >
             <class name="APITests.GetCollectionsTest">
             </class>

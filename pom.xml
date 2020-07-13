@@ -182,9 +182,33 @@
             </properties>
         </profile>
         <profile>
+            <id>loginTestSelinode</id>
+            <properties>
+                <testNGSuite>src/test/TestSuits/UI/LoginTestSelinode.xml</testNGSuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>signUpTestSelinode</id>
+            <properties>
+                <testNGSuite>src/test/TestSuits/UI/SignUpTestSelinode.xml</testNGSuite>
+            </properties>
+        </profile>
+        <profile>
             <id>signUpTest</id>
             <properties>
                 <testNGSuite>src/test/TestSuits/UI/SignUpTest.xml</testNGSuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>loginTestNeg</id>
+            <properties>
+                <testNGSuite>src/test/TestSuits/UI/LoginTestNeg.xml</testNGSuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>signUpTestNeg</id>
+            <properties>
+                <testNGSuite>src/test/TestSuits/UI/SignUpTestNeg.xml</testNGSuite>
             </properties>
         </profile>
         <profile>

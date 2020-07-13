@@ -4,8 +4,12 @@
 <suite name="Interview">
 
     <suite-files>
+        <suite-file path="UI/LoginTestSelinode.xml" />
+        <suite-file path="UI/SignUpTestSelinode.xml" />
         <suite-file path="UI/LoginTest.xml" />
+        <suite-file path="UI/LoginTestNeg.xml" />
         <suite-file path="UI/SignUpTest.xml" />
+        <suite-file path="UI/SignUpTestNeg.xml" />
         <suite-file path="API/verifyProductTest.xml" />
     </suite-files>
 

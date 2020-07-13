@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke">
+<suite name="Smoke SignUp">
+
     <listeners>
         <listener class-name="UI.Utils.ScreenShotOnFailListener" />
     </listeners>
+    <parameter name="email" value="mikhailov.andrei.qa@gmail.com" />
+    <parameter name="pswd" value="Qwerty1234" />
+
     <test name = "SignUp" >
+        <parameter name="browser" value="chrome"/>
         <classes >
-            <class name="UITests.SingUpTest"/>
+            <class name="UITests.SingUpTest">
+                <methods>
+                    <include name="singUp"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

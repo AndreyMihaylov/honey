@@ -1,6 +1,8 @@
 package APITests;
 
 import API.ApiActions;
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,8 +17,10 @@ public class GetCollectionsTest{
         apiActions.getCollectionsByUserIdForQualifiersPopular();
     }
 
+    @Description("Verification Id, Prices of product")
+    @Story("Smoke")
     @Test(dependsOnMethods = "getCollectionsTest")
-    public void verificationIdTitlePricesOfProductTest(){
+    public void verificationIdPricesOfProductTest(){
 
         apiActions = new ApiActions();
         boolean result = apiActions.verifyIDPrices();

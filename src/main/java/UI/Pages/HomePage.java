@@ -31,6 +31,12 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'t-userProfile')]")
     WebElement profile;
 
+    @FindBy(xpath = "//div[contains(text(),'incorrectPswd')]")
+    WebElement incorrectPswd;
+
+    @FindBy(xpath = "//div[contains(text(),'already taken')]")
+    WebElement emailTaken;
+
     @FindBy(xpath = "//div[@id='hamburger-join']")
     WebElement join;
 
@@ -86,6 +92,16 @@ public class HomePage extends BasePage {
     @Step("Check login success")
     public boolean successfulLogIn() {
         return profile.isDisplayed();
+    }
+
+    @Step("Check login success")
+    public boolean successSignUpNeg() {
+        return emailTaken.isDisplayed();
+    }
+
+    @Step("Check login success")
+    public boolean successfulWrongPswd() {
+        return incorrectPswd.isDisplayed();
     }
 
     @Step("Check logout success")
