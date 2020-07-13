@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke">
+<suite name="Smoke" parallel="tests" thread-count="1">
 
     <listeners>
         <listener class-name="UI.Utils.ScreenShotOnFailListener" />
@@ -10,7 +10,7 @@
     <parameter name="pswd" value="Qwerty1234" />
 
     <test name="Login docker-chrome-81">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="docker-chrome-81"/>
         <classes>
             <class name="UITests.LoginTest">
                 <methods>
@@ -20,4 +20,15 @@
         </classes>
     </test>
 
+    <test name="LogOut Login docker-chrome-83">
+        <parameter name="browser" value="docker-chrome-83"/>
+        <classes>
+            <class name="UITests.LoginTest">
+                <methods>
+                    <include name="logIn"/>
+                    <include name="logOut"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

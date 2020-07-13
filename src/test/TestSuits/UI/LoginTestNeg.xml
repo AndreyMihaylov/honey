@@ -7,17 +7,16 @@
         <listener class-name="UI.Utils.ScreenShotOnFailListener" />
     </listeners>
     <parameter name="email" value="mikhailov.andrei.qa@gmail.com" />
-    <parameter name="pswd" value="Qwerty1234" />
+    <parameter name="pswd" value="Qwerty12345" />
 
-    <test name="Login docker-chrome-81">
+    <test name="Login Negative">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="UITests.LoginTest">
                 <methods>
-                    <include name="logIn"/>
+                    <include name="logInNeg"/>
                 </methods>
             </class>
         </classes>
     </test>
-
 </suite>
